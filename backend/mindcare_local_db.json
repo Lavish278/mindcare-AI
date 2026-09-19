@@ -1,0 +1,47 @@
+{
+  "users": {},
+  "conversations": {},
+  "check_ins": {},
+  "wearable_readings": {},
+  "activity_sessions": {},
+  "sleep_records": {},
+  "personal_reference": {
+    "test-anomaly-user": {
+      "id": "test-anomaly-user",
+      "user_id": "test-anomaly-user",
+      "days_observed": 2,
+      "stability_tier": "initial",
+      "tier_label": "Initial Reference (Days 1\u20132)",
+      "tier_description": "Initial pattern calibration based on your first 48 hours of check-ins and wearable data.",
+      "disclaimer": "Personal Reference Range \u2014 Individualized physiological pattern, NOT a medical baseline or clinical diagnosis.",
+      "rest_hr_range": {
+        "min": 60,
+        "max": 82,
+        "avg": 71
+      },
+      "sleep_hr_range": {
+        "min": 54,
+        "max": 68,
+        "avg": 61
+      },
+      "exercise_hr_range": {
+        "min": 115,
+        "max": 165,
+        "avg": 142
+      },
+      "typical_daily_steps": 8400,
+      "typical_sleep_duration_hours": 7.3,
+      "typical_stress_avg": 4.6,
+      "typical_mood_avg": 6.8,
+      "typical_energy_avg": 6.4,
+      "confidence_score": 0.65,
+      "last_computed": "2026-09-19T08:39:45.277982+00:00",
+      "created_at": "2026-09-19T08:39:45.277982+00:00",
+      "updated_at": "2026-09-19T08:39:45.277982+00:00"
+    }
+  },
+  "recommendations": {},
+  "feedback": {},
+  "safety_events": {},
+  "app_versions": {}
+}
