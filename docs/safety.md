@@ -62,3 +62,4 @@ Safety logic is strictly decoupled from wellness recommendations:
 - Routine wellness recommendations handle sleep routines, box breathing, and desk stretches.
 - Safety events trigger explicit UI modals and audit records without conflating lifestyle tips with crisis intervention.
 - The wearable biosensor stream never claims to detect a heart attack or medical emergency.
+

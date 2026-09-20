@@ -73,3 +73,4 @@ gcloud run deploy mindcare-backend \
 ```powershell
 firebase deploy --only firestore:rules,firestore:indexes
 ```
+

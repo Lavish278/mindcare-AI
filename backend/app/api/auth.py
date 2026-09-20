@@ -151,3 +151,4 @@ def update_privacy_settings(req: PrivacySettingsUpdateRequest, user: Dict[str, A
     }
     updated = DatabaseManager.update("users", uid, {"privacy_consent": updates})
     return {"status": "success", "privacy_consent": updates}
+

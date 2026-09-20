@@ -105,3 +105,4 @@ def health_check():
         "database_firestore": DatabaseManager.is_firestore_active(),
         "disclaimer": "MindCare AI provides non-diagnostic wellness insights."
     }
+

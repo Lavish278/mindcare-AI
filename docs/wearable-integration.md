@@ -69,10 +69,52 @@ $$
 
 ---
 
-## 5. Integrating Physical Smartwatches (Future Scope)
+---
 
-To connect Fitbit, Apple Health, or Garmin:
+## 5. Live External Wearable & IoT Telemetry Ingestion (Current Version)
+
+In addition to internal mock data generation, MindCare AI features an open REST telemetry ingestion gateway:
+
+```http
+POST /api/v1/wearables/ingest
+Content-Type: application/json
+Authorization: Bearer <JWT_TOKEN> (Optional for local demo)
+
+{
+  "heart_rate": 84,
+  "context_mode": "AWAKE",
+  "steps": 1250,
+  "battery_level": 92,
+  "device_name": "Apple Watch Series 9",
+  "device_id": "BLE-WATCH-001",
+  "source": "Physical Hardware Bridge"
+}
+```
+
+### Direct Python / IoT Hardware Bridge:
+Smartwatches with companion phone bridges (Apple HealthKit, Google Health Connect, WearOS apps) or custom hardware (ESP32 / Arduino PPG sensors) can stream biometrics directly into MindCare AI:
+
+```bash
+# Send an instant resting reading:
+python scripts/send-wearable-reading.py --hr 74 --mode AWAKE --steps 300
+
+# Stream continuous live telemetry every 3 seconds:
+python scripts/send-wearable-reading.py --stream --interval 3
+```
+
+When a reading is ingested:
+1. `DataQualityValidator` assesses physiological integrity (`VALID`, `SUSPICIOUS`, `MISSING`, `STALE`).
+2. `ModeService` updates active user context mode (`AWAKE`, `SLEEP`, `EXERCISE`).
+3. `ContextualAnomalyEngine` compares against personalized baseline bounds and computes anomaly state.
+4. Readings are persisted to the database and reflected across the live dashboard charts.
+
+---
+
+## 6. Cloud OAuth2 Vendor Adapters (Future Scope)
+
+To connect vendor cloud APIs directly (Fitbit Web API, Garmin Health API):
 1. Implement a class inheriting `WearableProvider` (e.g. `FitbitProvider`).
 2. Implement OAuth2 authorization code flow with the vendor cloud.
 3. Map vendor JSON payloads to MindCare's standardized Pydantic entities.
 4. Set `WEARABLE_PROVIDER=fitbit` in `.env`.
+

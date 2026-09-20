@@ -38,3 +38,4 @@ NON_DIAGNOSTIC_DISCLAIMER = (
     "It is NOT a medical device, licensed clinical service, or diagnostic tool. "
     "Readings, check-ins, and recommendations are wellness indicators and do NOT constitute medical diagnoses."
 )
+

@@ -33,3 +33,4 @@ class AIProvider(ABC):
     ) -> List[Dict[str, Any]]:
         """Generate dynamic check-in follow-up questions grounded in user history."""
         pass
+

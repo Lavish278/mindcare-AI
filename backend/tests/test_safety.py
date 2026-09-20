@@ -42,3 +42,4 @@ def test_normal_wellness_statements_are_not_flagged():
         is_crisis, payload = SafetyDetector.evaluate(phrase)
         assert is_crisis is False, f"False positive crisis on normal phrase: '{phrase}'"
         assert payload is None
+

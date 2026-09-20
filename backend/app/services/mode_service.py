@@ -58,3 +58,4 @@ class ModeService:
 
         cls.set_mode(user_id, new_mode, manual_override=False)
         return new_mode
+

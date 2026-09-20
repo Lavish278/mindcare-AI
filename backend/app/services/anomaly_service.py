@@ -19,11 +19,15 @@ class ContextualAnomalyEngine:
         current_hr: int,
         data_quality: str = "VALID",
         duration_minutes: int = 5,
-        recent_stress_score: Optional[int] = None
+        recent_stress_score: Optional[int] = None,
+        context_mode: Optional[str] = None
     ) -> Dict[str, Any]:
         ref = PersonalReferenceService.get_user_reference(user_id)
-        mode_info = ModeService.get_current_mode(user_id)
-        current_mode = mode_info.get("mode", "AWAKE")
+        if not context_mode:
+            mode_info = ModeService.get_current_mode(user_id)
+            current_mode = mode_info.get("mode", "AWAKE")
+        else:
+            current_mode = context_mode
 
         # 1. Quality Gate: Ignore poor quality data
         if data_quality in ["SUSPICIOUS", "MISSING", "STALE"]:
@@ -135,3 +139,4 @@ class ContextualAnomalyEngine:
                     "explanation": f"Current heart rate of {current_hr} bpm sits comfortably inside your personal reference pattern ({rest_min}–{rest_max} bpm).",
                     "recommendation": "You are in a balanced resting state."
                 }
+

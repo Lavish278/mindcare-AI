@@ -173,3 +173,4 @@ class RecommendationService:
         }
         DatabaseManager.set("feedback", fb_id, record)
         return record
+

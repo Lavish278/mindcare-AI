@@ -121,3 +121,4 @@ def delete_conversation(conversation_id: str, user: Dict[str, Any] = Depends(get
         DatabaseManager.delete("conversations", conversation_id)
         return {"status": "deleted"}
     return {"status": "not_found"}
+

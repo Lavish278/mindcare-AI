@@ -102,3 +102,4 @@ class GeminiAIProvider(AIProvider):
     ) -> List[Dict[str, Any]]:
         from app.ai.mock_provider import MockAIProvider
         return MockAIProvider().generate_adaptive_questions(recent_checkins, recent_sleep)
+

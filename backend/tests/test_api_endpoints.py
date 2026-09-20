@@ -100,6 +100,40 @@ def test_wearable_endpoints():
     assert sim_ex_res.status_code == 200
     assert sim_ex_res.json()["anomaly_evaluation"]["is_anomaly"] is False
 
+    # Live Hardware Telemetry Ingestion Tests
+    # 1. Normal resting reading from real wearable
+    ingest_res = client.post("/api/v1/wearables/ingest", json={
+        "heart_rate": 74,
+        "context_mode": "AWAKE",
+        "steps": 250,
+        "device_name": "Physical Smartwatch (BLE Stream)",
+        "source": "Physical Hardware Bridge"
+    })
+    assert ingest_res.status_code == 200
+    ingest_data = ingest_res.json()
+    assert ingest_data["status"] == "ingested"
+    assert ingest_data["reading"]["heart_rate"] == 74
+    assert ingest_data["reading"]["data_quality"] == "VALID"
+    assert ingest_data["anomaly_evaluation"]["is_anomaly"] is False
+
+    # 2. Live telemetry with sleep tachycardia anomaly
+    ingest_sleep_res = client.post("/api/v1/wearables/ingest", json={
+        "heart_rate": 105,
+        "context_mode": "SLEEP",
+        "device_name": "Physical Smartwatch"
+    })
+    assert ingest_sleep_res.status_code == 200
+    sleep_data = ingest_sleep_res.json()
+    assert sleep_data["anomaly_evaluation"]["is_anomaly"] is True
+
+    # 3. Live telemetry with impossible HR (data quality check)
+    ingest_noisy_res = client.post("/api/v1/wearables/ingest", json={
+        "heart_rate": 280,
+        "context_mode": "AWAKE"
+    })
+    assert ingest_noisy_res.status_code == 200
+    assert ingest_noisy_res.json()["reading"]["data_quality"] == "SUSPICIOUS"
+
 
 def test_progress_and_admin_endpoints():
     prog_res = client.get("/api/v1/progress/summary")
@@ -113,3 +147,4 @@ def test_progress_and_admin_endpoints():
     admin_data = admin_res.json()
     assert admin_data["active_cohort_size"] >= 40
     assert "continuous_improvement_pipeline" in admin_data
+

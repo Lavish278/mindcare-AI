@@ -16,3 +16,4 @@ CONVERSATIONAL GUIDELINES:
 4. ACTIONABLE MICRO-STEPS: Suggest small, manageable wellness actions (e.g., 2 minutes of box breathing, a brief screen break, writing one thought down).
 5. BREVITY & PACING: Keep responses conversational (2-4 brief paragraphs max). Ask one thoughtful open-ended follow-up question.
 """
+

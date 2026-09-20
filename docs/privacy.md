@@ -28,3 +28,4 @@ For university thesis evaluation and admin dashboards:
 - Only aggregate metrics are queried (`count`, `average`, `distribution percentage`).
 - Individual user identifiers (`uid`, email, IP) are scrubbed.
 - Sensitive qualitative reflection notes and chat contents are completely omitted from research panels.
+

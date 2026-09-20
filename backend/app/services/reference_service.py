@@ -108,3 +108,4 @@ class PersonalReferenceService:
         }
         DatabaseManager.set("personal_reference", user_id, updated_profile)
         return updated_profile
+

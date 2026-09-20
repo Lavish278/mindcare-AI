@@ -13,3 +13,4 @@ def get_research_metrics(user: Dict[str, Any] = Depends(get_current_user)):
     and research governance.
     """
     return ResearchAnalyticsEngine.get_aggregated_metrics()
+

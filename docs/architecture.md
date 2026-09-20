@@ -90,3 +90,4 @@ Plan B handles the objective physiological stream:
 | **Data Validation** | Pydantic v2 | Strict request/response parsing and runtime validation. |
 | **AI Integration** | `google-genai` / Provider Abstraction | Drop-in support for Gemini 2.5 Flash with robust mock fallback. |
 | **Database** | Firestore + Local Store | Cloud Firestore with fallback JSON-persisted mirror for offline demo. |
+

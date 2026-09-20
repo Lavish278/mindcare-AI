@@ -58,3 +58,4 @@ MindCare AI bridges this gap through a dual-plan architecture:
 
 ### Slide 7: Evaluation & Future Scope
 > "All 17 automated unit and integration tests pass with 100% reliability. Future iterations will support direct OAuth2 integrations with physical Apple Watch and Garmin SDKs, on-device voice models, and longitudinal cohort studies."
+

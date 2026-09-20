@@ -84,3 +84,4 @@ class CheckInService:
             descending=True,
             limit=limit
         )
+

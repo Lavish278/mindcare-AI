@@ -58,3 +58,4 @@ def get_progress_summary(user: Dict[str, Any] = Depends(get_current_user)):
 def get_reference_details(user: Dict[str, Any] = Depends(get_current_user)):
     user_id = user["id"]
     return PersonalReferenceService.get_user_reference(user_id)
+

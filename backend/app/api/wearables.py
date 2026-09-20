@@ -2,7 +2,12 @@ from fastapi import APIRouter, Depends, Query
 from typing import Dict, Any, List
 from datetime import datetime, timezone
 
-from app.schemas.api_schemas import ConnectWearableRequest, ModeChangeRequest, SimulateAnomalyRequest
+from app.schemas.api_schemas import (
+    ConnectWearableRequest,
+    ModeChangeRequest,
+    SimulateAnomalyRequest,
+    IngestWearableReadingRequest
+)
 from app.api.auth import get_current_user
 from app.wearable.mock_provider import mock_wearable_service
 from app.services.mode_service import ModeService
@@ -70,6 +75,46 @@ def sync_data(user: Dict[str, Any] = Depends(get_current_user)):
     }
 
 
+@router.post("/ingest")
+@router.post("/readings")
+def ingest_wearable_reading(
+    req: IngestWearableReadingRequest,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Direct Telemetry Ingestion Endpoint for physical smartwatches,
+    companion mobile apps (Apple Health / WearOS / Health Connect), or IoT biosensors.
+    Accepts telemetry payloads, runs DataQualityValidator, evaluates context mode,
+    executes ContextualAnomalyEngine, stores reading in DB, and returns live status.
+    """
+    user_id = user["id"]
+    payload = req.model_dump()
+    stored = mock_wearable_service.ingest_reading(user_id, payload)
+
+    # Persist in DB mirror
+    doc_id = f"reading-{int(datetime.now(timezone.utc).timestamp())}"
+    DatabaseManager.set("wearable_readings", doc_id, {
+        "id": doc_id,
+        "user_id": user_id,
+        **stored
+    })
+
+    # Evaluate contextual anomaly on newly ingested reading
+    anomaly_eval = ContextualAnomalyEngine.evaluate_heart_rate(
+        user_id=user_id,
+        current_hr=stored["heart_rate"],
+        data_quality=stored.get("data_quality", "VALID"),
+        duration_minutes=10,
+        context_mode=stored.get("context_mode")
+    )
+
+    return {
+        "status": "ingested",
+        "reading": stored,
+        "anomaly_evaluation": anomaly_eval
+    }
+
+
 @router.get("/readings")
 def get_latest_readings(user: Dict[str, Any] = Depends(get_current_user)):
     user_id = user["id"]
@@ -134,3 +179,4 @@ def simulate_anomaly(req: SimulateAnomalyRequest, user: Dict[str, Any] = Depends
         "readings": readings,
         "anomaly_evaluation": eval_result
     }
+

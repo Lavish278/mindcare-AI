@@ -111,3 +111,4 @@ export const Navbar: React.FC<{ onToggleMobileMenu?: () => void }> = ({ onToggle
     </header>
   );
 };
+

@@ -57,3 +57,4 @@ flowchart TD
 - **Tone**: Reassuring, soft-spoken, active listener.
 - **Microphone Pipeline**: Native Web Speech API with fallback typed-voice simulation.
 - **Audio Output**: Client-side speech synthesis with immediate safety cutoff if crisis keywords are uttered.
+

@@ -87,6 +87,17 @@ class ConnectWearableRequest(BaseModel):
     device_name: Optional[str] = "MindCare Demo Band"
 
 
+class IngestWearableReadingRequest(BaseModel):
+    heart_rate: int
+    timestamp: Optional[str] = None
+    context_mode: Optional[str] = None  # "AWAKE", "SLEEP", "EXERCISE" (or None for auto-detection)
+    steps: Optional[int] = None
+    battery_level: Optional[int] = 95
+    device_name: Optional[str] = "Physical Smartwatch"
+    device_id: Optional[str] = "LIVE-DEVICE-01"
+    source: Optional[str] = "Live Hardware Ingestion"
+
+
 class ModeChangeRequest(BaseModel):
     mode: str  # "AWAKE", "SLEEP", "EXERCISE"
     manual_override: bool = True
@@ -112,3 +123,4 @@ class RecommendationFeedbackRequest(BaseModel):
 # Anomaly simulation for demo
 class SimulateAnomalyRequest(BaseModel):
     anomaly_scenario: str  # "sleep_high_hr", "awake_prolonged_tachycardia", "exercise_normal_spike", "extreme_stress"
+

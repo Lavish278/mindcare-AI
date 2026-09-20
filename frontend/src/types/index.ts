@@ -175,3 +175,4 @@ export interface SafetyDetails {
   resources: SafetyResource[];
   disclaimer: string;
 }
+

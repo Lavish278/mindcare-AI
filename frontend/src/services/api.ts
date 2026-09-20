@@ -211,6 +211,22 @@ export const api = {
     return res.json();
   },
 
+  async ingestWearableReading(data: {
+    heart_rate: number;
+    context_mode?: string;
+    steps?: number;
+    battery_level?: number;
+    device_name?: string;
+    source?: string;
+  }) {
+    const res = await fetch(`${API_BASE}/wearables/ingest`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  },
+
   // Recommendations
   async getRecommendations(stress: number = 5, energy: number = 5) {
     const res = await fetch(`${API_BASE}/recommendations?stress=${stress}&energy=${energy}`, {
@@ -256,3 +272,4 @@ export const api = {
     return res.json();
   },
 };
+

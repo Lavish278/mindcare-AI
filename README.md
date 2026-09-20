@@ -192,3 +192,4 @@ Detailed engineering documentation is available in the [`docs/`](file:///c:/User
 
 ## 8. License
 Developed for Academic Evaluation & Research. Licensed under the MIT License.
+

@@ -45,3 +45,4 @@ class WearableProvider(ABC):
     def get_exercise_sessions(self, user_id: str, limit: int = 5) -> List[Dict[str, Any]]:
         """Fetch recent workouts or exercise bouts."""
         pass
+

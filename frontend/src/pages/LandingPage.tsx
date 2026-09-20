@@ -198,3 +198,4 @@ export const LandingPage: React.FC = () => {
     </div>
   );
 };
+

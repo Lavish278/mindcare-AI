@@ -211,3 +211,4 @@ class DatabaseManager:
             except Exception as e:
                 logger.error(f"Firestore query error: {e}. Falling back to local store.")
         return db_local.query(collection, filters=filters, order_by=order_by, descending=descending, limit=limit)
+

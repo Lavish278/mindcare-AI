@@ -126,6 +126,43 @@ Switches physiological mode (`AWAKE`, `SLEEP`, or `EXERCISE`).
 ### `GET /wearables/readings`
 Fetches current heart rate snapshot with data quality tag (`VALID`, `SUSPICIOUS`, `MISSING`, `STALE`) and contextual anomaly evaluation.
 
+### `POST /wearables/ingest`
+Direct telemetry ingestion endpoint for physical smartwatches (Apple Watch, WearOS, Garmin) or IoT biosensors (ESP32).
+```json
+// Request Body
+{
+  "heart_rate": 84,
+  "context_mode": "AWAKE",
+  "steps": 1250,
+  "battery_level": 92,
+  "device_name": "Physical Smartwatch",
+  "device_id": "LIVE-DEVICE-01",
+  "source": "Physical Hardware Bridge"
+}
+
+// Response Body (200 OK)
+{
+  "status": "ingested",
+  "reading": {
+    "heart_rate": 84,
+    "timestamp": "2026-09-19T20:45:00Z",
+    "context_mode": "AWAKE",
+    "data_quality": "VALID",
+    "quality_rationale": "Reading within viable resting range",
+    "battery_level": 92,
+    "device_name": "Physical Smartwatch"
+  },
+  "anomaly_evaluation": {
+    "state": "NORMAL",
+    "is_anomaly": false,
+    "current_mode": "AWAKE",
+    "data_quality": "VALID",
+    "explanation": "Heart rate is within expected range for daytime baseline.",
+    "recommendation": "Maintain your steady pace and stay well-hydrated."
+  }
+}
+```
+
 ### `POST /wearables/simulate-anomaly`
 Demonstrates contextual evaluation without hardware:
 - `sleep_high_hr`: Elevated nocturnal HR $\rightarrow$ flags `UNUSUAL`.
@@ -148,3 +185,4 @@ Captures user rating (`YES`, `SOMEWHAT`, `NO`) and qualitative notes.
 
 ### `GET /admin/metrics`
 Returns aggregated, de-identified project metrics (cohort size, completion rate, signal quality distribution, continuous improvement version tracking).
+

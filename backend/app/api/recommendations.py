@@ -36,3 +36,4 @@ def submit_feedback(req: RecommendationFeedbackRequest, user: Dict[str, Any] = D
         comment=req.comment or ""
     )
     return {"status": "success", "feedback": saved}
+

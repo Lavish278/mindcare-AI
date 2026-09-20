@@ -9,3 +9,4 @@ Write-Host "==========================================================" -Foregro
 
 Set-Location $frontendPath
 npm run dev
+

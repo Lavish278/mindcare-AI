@@ -200,3 +200,4 @@ class MockAIProvider(AIProvider):
 
 # Singleton instance
 mock_ai_service = MockAIProvider()
+

@@ -81,3 +81,4 @@ class DataQualityValidator:
             return "SUSPICIOUS", f"Step count {steps} exceeds plausible single-day movement limit."
 
         return "VALID", "Activity data is valid."
+

@@ -108,3 +108,4 @@ def test_contextual_anomaly_evaluation():
     )
     assert res_stale["is_anomaly"] is False
     assert res_stale["state"] == "NORMAL"
+

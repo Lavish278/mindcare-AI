@@ -13,6 +13,7 @@ interface WearableContextType {
   connectDemoBand: () => Promise<void>;
   disconnect: () => Promise<void>;
   simulateAnomalyScenario: (scenario: string) => Promise<void>;
+  ingestReading: (data: { heart_rate: number; context_mode?: string; steps?: number; battery_level?: number; device_name?: string }) => Promise<any>;
 }
 
 const WearableContext = createContext<WearableContextType | undefined>(undefined);
@@ -108,6 +109,32 @@ export const WearableProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
+  const ingestReading = async (data: {
+    heart_rate: number;
+    context_mode?: string;
+    steps?: number;
+    battery_level?: number;
+    device_name?: string;
+  }) => {
+    setSyncing(true);
+    try {
+      const res = await api.ingestWearableReading(data);
+      if (res.reading) {
+        setReadings(res.reading);
+      }
+      if (res.anomaly_evaluation) {
+        setAnomalyEvaluation(res.anomaly_evaluation);
+        if (res.anomaly_evaluation.current_mode) {
+          setCurrentMode(res.anomaly_evaluation.current_mode);
+        }
+      }
+      await fetchWearableState();
+      return res;
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   return (
     <WearableContext.Provider
       value={{
@@ -121,6 +148,7 @@ export const WearableProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         connectDemoBand,
         disconnect,
         simulateAnomalyScenario,
+        ingestReading,
       }}
     >
       {children}

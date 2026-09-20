@@ -66,3 +66,4 @@ class ResearchAnalyticsEngine:
             },
             "generated_at": datetime.now(timezone.utc).isoformat()
         }
+

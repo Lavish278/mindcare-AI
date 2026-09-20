@@ -36,3 +36,4 @@ def process_voice_turn(req: VoiceProcessRequest, user: Dict[str, Any] = Depends(
         reply_text=response["message"],
         safety_interception=False
     )
+

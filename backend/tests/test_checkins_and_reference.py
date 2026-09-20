@@ -93,3 +93,4 @@ def test_recommendation_and_feedback_loop():
     )
     assert fb["helpful"] == "YES"
     assert fb["user_id"] == user_id
+

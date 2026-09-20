@@ -1,8 +1,49 @@
 {
-  "users": {},
+  "users": {
+    "demo-user-123": {
+      "id": "demo-user-123",
+      "uid": "demo-user-123",
+      "email": "student@mindcare.demo",
+      "display_name": "Alex Chen",
+      "role": "user",
+      "onboarding_completed": true,
+      "wellness_preferences": {
+        "goals": [
+          "Stress Reduction",
+          "Sleep Quality",
+          "Academic Focus"
+        ],
+        "notification_frequency": "twice_daily"
+      },
+      "privacy_consent": {
+        "ai_conversation_data": true,
+        "wellness_data": true,
+        "wearable_data": true,
+        "notifications_enabled": true,
+        "analytics_participation": true
+      },
+      "created_at": "2026-09-19T18:34:39.880532+00:00",
+      "updated_at": "2026-09-19T18:34:39.880532+00:00"
+    }
+  },
   "conversations": {},
   "check_ins": {},
-  "wearable_readings": {},
+  "wearable_readings": {
+    "reading-1789843117": {
+      "id": "reading-1789843117",
+      "user_id": "demo-user-123",
+      "heart_rate": 82,
+      "timestamp": "2026-09-19T18:38:36.784439+00:00",
+      "context_mode": "AWAKE",
+      "data_quality": "VALID",
+      "quality_rationale": "Signal passes all physiological integrity checks.",
+      "battery_level": 92,
+      "device_name": "Physical Wearable Device",
+      "source": "Physical Hardware Bridge",
+      "created_at": "2026-09-19T18:38:37.194480+00:00",
+      "updated_at": "2026-09-19T18:38:37.194480+00:00"
+    }
+  },
   "activity_sessions": {},
   "sleep_records": {},
   "personal_reference": {
@@ -35,13 +76,65 @@
       "typical_mood_avg": 6.8,
       "typical_energy_avg": 6.4,
       "confidence_score": 0.65,
-      "last_computed": "2026-09-19T08:39:45.277982+00:00",
-      "created_at": "2026-09-19T08:39:45.277982+00:00",
-      "updated_at": "2026-09-19T08:39:45.277982+00:00"
+      "last_computed": "2026-09-19T15:50:50.752768+00:00",
+      "created_at": "2026-09-19T15:50:50.752768+00:00",
+      "updated_at": "2026-09-19T15:50:50.752768+00:00"
+    },
+    "demo-user-123": {
+      "id": "demo-user-123",
+      "user_id": "demo-user-123",
+      "days_observed": 2,
+      "stability_tier": "initial",
+      "tier_label": "Initial Reference (Days 1\u20132)",
+      "tier_description": "Initial pattern calibration based on your first 48 hours of check-ins and wearable data.",
+      "disclaimer": "Personal Reference Range \u2014 Individualized physiological pattern, NOT a medical baseline or clinical diagnosis.",
+      "rest_hr_range": {
+        "min": 60,
+        "max": 82,
+        "avg": 71
+      },
+      "sleep_hr_range": {
+        "min": 54,
+        "max": 68,
+        "avg": 61
+      },
+      "exercise_hr_range": {
+        "min": 115,
+        "max": 165,
+        "avg": 142
+      },
+      "typical_daily_steps": 8400,
+      "typical_sleep_duration_hours": 7.3,
+      "typical_stress_avg": 4.6,
+      "typical_mood_avg": 6.8,
+      "typical_energy_avg": 6.4,
+      "confidence_score": 0.65,
+      "last_computed": "2026-09-19T18:34:39.881978+00:00",
+      "created_at": "2026-09-19T18:34:39.881978+00:00",
+      "updated_at": "2026-09-19T18:34:39.881978+00:00"
     }
   },
   "recommendations": {},
   "feedback": {},
   "safety_events": {},
-  "app_versions": {}
+  "app_versions": {
+    "v1.0.0": {
+      "version": "1.0.0",
+      "stage": "v1.0-university-mvp",
+      "release_date": "2026-09-19",
+      "features": [
+        "Conversational AI Wellness Companion",
+        "Mock Wearable Provider with real-time sync",
+        "Tri-Mode Engine (Awake, Sleep, Exercise)",
+        "Non-diagnostic Personal Reference Modeling",
+        "Contextual Anomaly Engine",
+        "Midday & Evening Adaptive Check-ins",
+        "Crisis Safety Interception & Hotline Dispatch",
+        "De-identified Research Analytics Dashboard"
+      ],
+      "id": "v1.0.0",
+      "created_at": "2026-09-19T18:34:39.883609+00:00",
+      "updated_at": "2026-09-19T18:34:39.883609+00:00"
+    }
+  }
 }

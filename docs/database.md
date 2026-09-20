@@ -140,3 +140,4 @@ Audit log of crisis statements and physical emergency alerts intercepted by the 
 ## 3. Indexes & Security
 - Query index configuration: Defined in `firebase/firestore.indexes.json`.
 - Authorization rules: Documented in `firebase/firestore.rules`.
+

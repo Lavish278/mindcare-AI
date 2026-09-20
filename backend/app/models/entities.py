@@ -182,3 +182,4 @@ class AppVersionInfo(BaseModel):
         "Crisis Safety Interception & Hotline Dispatch",
         "De-identified Research Analytics Dashboard"
     ]
+
