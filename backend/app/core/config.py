@@ -46,6 +46,10 @@ class Settings(BaseSettings):
 
     # Voice Service Configuration
     VOICE_PROVIDER: str = "mock"  # "web_speech" or "mock"
+    STT_PROVIDER: str = "mock"  # "gemini", "whisper", or "mock"
+    TTS_PROVIDER: str = "mock"  # "gemini", "local", or "mock"
+    VOICE_MODE: str = "standard"  # "standard" or "realtime"
+    REALTIME_VOICE_ENABLED: bool = True
 
     # Wearable Service Configuration
     WEARABLE_PROVIDER: str = "mock"  # "mock" or "external"

@@ -81,15 +81,58 @@ export const api = {
     return res.json();
   },
 
-  // Voice Turn
-  async processVoiceTurn(speechText: string, currentMode?: string) {
+  // Voice Turns & Services
+  async processVoiceTurn(speechText: string, currentMode?: string, conversationId?: string) {
     const res = await fetch(`${API_BASE}/voice/process`, {
       method: 'POST',
       headers: getAuthHeaders(),
       body: JSON.stringify({
         user_speech_text: speechText,
         current_mode: currentMode,
+        conversation_id: conversationId,
       }),
+    });
+    return res.json();
+  },
+
+  async executeVoiceTurn(data: {
+    user_speech_text?: string;
+    audio_base64?: string;
+    conversation_id?: string;
+    current_mode?: string;
+  }) {
+    const res = await fetch(`${API_BASE}/voice/turn`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  },
+
+  async transcribeAudio(audioBase64: string, mimeType: string = 'audio/wav') {
+    const res = await fetch(`${API_BASE}/voice/transcribe`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({
+        audio_base64: audioBase64,
+        mime_type: mimeType,
+      }),
+    });
+    return res.json();
+  },
+
+  async synthesizeSpeech(text: string, rate: number = 0.92, pitch: number = 1.0) {
+    const res = await fetch(`${API_BASE}/voice/synthesize`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ text, rate, pitch }),
+    });
+    return res.json();
+  },
+
+  async getVoiceConfig() {
+    const res = await fetch(`${API_BASE}/voice/config`, {
+      headers: getAuthHeaders(),
     });
     return res.json();
   },

@@ -9,6 +9,7 @@ from app.safety.detector import SafetyDetector
 from app.core.database import DatabaseManager
 from app.core.config import settings
 from app.services.mode_service import ModeService
+from app.services.context_builder import ContextBuilder
 from app.ai.gemini_provider import GeminiAIProvider
 from app.ai.mock_provider import MockAIProvider
 
@@ -71,12 +72,12 @@ def send_chat_message(req: ChatRequest, user: Dict[str, Any] = Depends(get_curre
         "metadata": {"mode": user_mode}
     })
 
-    # 3. Generate contextual AI response
-    user_context = {
-        "display_name": user.get("display_name", "Friend"),
-        "wellness_goals": user.get("wellness_preferences", {}).get("goals", []),
-        "mode": user_mode
-    }
+    # 3. Generate contextual AI response using unified ContextBuilder
+    user_context = ContextBuilder.build_context(
+        user_id=user_id,
+        user_profile=user,
+        current_mode=user_mode
+    )
     ai_result = ai_provider.generate_chat_response(
         messages=conv["messages"],
         user_context=user_context,

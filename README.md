@@ -4,11 +4,11 @@
 [![React](https://img.shields.io/badge/React-18.3-61DAFB.svg?style=flat&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-38B2AC.svg?style=flat&logo=tailwind-css)](https://tailwindcss.com)
-[![Tests](https://img.shields.io/badge/pytest-17%20passed%20(100%25)-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/pytest-24%20passed%20(100%25)-brightgreen.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
 > **University Final-Year Engineering Project**
-> A scalable digital mental wellness platform combining conversational AI, psychosocial self-monitoring, and context-aware wearable device integration.
+> A scalable digital mental wellness platform combining conversational AI, voice companion, psychosocial self-monitoring, and context-aware wearable device integration.
 
 ---
 
@@ -147,7 +147,7 @@ To demonstrate the project during an academic defense:
 
 ## 5. Automated Testing Suite
 
-The repository includes a comprehensive 17-test suite verifying API validation, safety crisis interception, data quality filtering, and contextual anomaly evaluation:
+The repository includes a comprehensive 24-test suite verifying API validation, safety crisis interception, data quality filtering, voice companion turns, and contextual anomaly evaluation:
 
 ```powershell
 # Run backend tests
@@ -155,7 +155,7 @@ cd backend
 .\.venv\Scripts\python.exe -m pytest tests -v
 ```
 
-**Results: 17 Passed (100% Pass Rate in 0.62s)**
+**Results: 24 Passed (100% Pass Rate in 0.66s)**
 
 ```powershell
 # Verify frontend production build
@@ -163,13 +163,14 @@ cd frontend
 npm run build
 ```
 
-**Results: Clean Rollup bundling in 16.58s with 0 errors.**
+**Results: Clean Rollup bundling with 0 errors.**
 
 ---
 
 ## 6. Project Documentation Index
 
 Detailed engineering documentation is available in the [`docs/`](file:///c:/Users/acer/Downloads/mindcare%20AI%202/docs/) directory:
+- [docs/VOICE_ARCHITECTURE.md](file:///c:/Users/acer/Downloads/mindcare%20AI%202/docs/VOICE_ARCHITECTURE.md): Complete voice companion guide, STT/TTS abstractions, dual modes, and WebSocket barge-in.
 - [docs/architecture.md](file:///c:/Users/acer/Downloads/mindcare%20AI%202/docs/architecture.md): Plan A & Plan B component specifications.
 - [docs/database.md](file:///c:/Users/acer/Downloads/mindcare%20AI%202/docs/database.md): Firestore schemas, indexes, and document structures.
 - [docs/api.md](file:///c:/Users/acer/Downloads/mindcare%20AI%202/docs/api.md): REST API endpoints, request schemas, and sample payloads.

@@ -176,3 +176,28 @@ export interface SafetyDetails {
   disclaimer: string;
 }
 
+export type VoiceState = 'IDLE' | 'LISTENING' | 'PROCESSING' | 'SPEAKING' | 'ERROR';
+export type VoiceMode = 'standard' | 'realtime';
+
+export interface VoicePersona {
+  name: string;
+  tone: string;
+  rate: number;
+  pitch: number;
+  preferred_browser_voices?: string[];
+}
+
+export interface VoiceTurnResponse {
+  reply_text: string;
+  audio_url?: string;
+  audio_base64?: string;
+  conversation_id?: string;
+  transcription?: string;
+  safety_interception: boolean;
+  resources_presented?: string[];
+  suggested_followups?: string[];
+  voice_persona?: VoicePersona;
+  context_snapshot?: Record<string, any>;
+  wellness_disclaimer?: string;
+}
+

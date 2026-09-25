@@ -56,19 +56,54 @@ class ChatResponse(BaseModel):
 # Voice schemas
 class VoiceTranscriptionRequest(BaseModel):
     audio_base64: Optional[str] = None
-    transcript_text: Optional[str] = None
+    mime_type: Optional[str] = "audio/wav"
+
+
+class VoiceTranscriptionResponse(BaseModel):
+    text: str
+    confidence: float = 0.95
+    provider: str
+    is_empty: bool = False
 
 
 class VoiceProcessRequest(BaseModel):
     user_speech_text: str
+    current_mode: Optional[str] = "AWAKE"
+    conversation_id: Optional[str] = None
+
+
+class VoiceTurnRequest(BaseModel):
+    user_speech_text: Optional[str] = None
+    audio_base64: Optional[str] = None
+    conversation_id: Optional[str] = None
     current_mode: Optional[str] = "AWAKE"
 
 
 class VoiceProcessResponse(BaseModel):
     reply_text: str
     audio_url: Optional[str] = None
+    audio_base64: Optional[str] = None
+    conversation_id: Optional[str] = None
+    transcription: Optional[str] = None
     safety_interception: bool = False
     resources_presented: Optional[List[str]] = None
+    suggested_followups: Optional[List[str]] = None
+    voice_persona: Optional[Dict[str, Any]] = None
+    context_snapshot: Optional[Dict[str, Any]] = None
+    wellness_disclaimer: Optional[str] = "MindCare AI provides supportive wellness dialogue, not medical diagnosis."
+
+
+class VoiceSynthesisRequest(BaseModel):
+    text: str
+    rate: Optional[float] = 0.92
+    pitch: Optional[float] = 1.0
+
+
+class VoiceSynthesisResponse(BaseModel):
+    audio_base64: Optional[str] = None
+    mime_type: str = "audio/wav"
+    provider: str
+    voice_persona: Dict[str, Any]
 
 
 # Check-in schemas
